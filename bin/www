@@ -1,9 +1,17 @@
 #!/usr/bin/env node
-var debug = require('debug')('altonbay');
+var debug = require('debug');
 var app = require('../app');
+var port = (process.env.NODE_ENV == "production") ? 80 : 3000;
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT);
 
 var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+  debug('Pegasus server listening on port ' + server.address().port);
+});
+
+io.sockets.on('connection', function (socket) {
+    socket.emit('message', { message: 'welcome to the chat' });
+    socket.on('send', function (data) {
+        io.sockets.emit('message', data);
+    });
 });
