@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "forever start ./bin/www"
+    "start": "forever start ./bin/www NODE_ENV=production"
   },
   "dependencies": {
     "express": "~4.2.0",
