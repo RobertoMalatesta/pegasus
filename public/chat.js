@@ -1,7 +1,9 @@
+var hostname = (process.env.NODE_ENV == "production") ? "http://107.170.247.198:80" : "http://127.0.0.1:3000";
+
 window.onload = function() {
 
     var messages = [];
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect(hostname);
     var field = document.getElementById("field");
     var sendButton = document.getElementById("send");
     var content = document.getElementById("content");
