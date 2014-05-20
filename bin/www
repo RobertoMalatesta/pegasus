@@ -2,12 +2,16 @@
 var debug = require('debug');
 var app = require('../app');
 var port = (process.env.NODE_ENV == "production") ? 80 : 3000;
+var message = "";
 
-app.set('port', process.env.PORT);
+app.set('port', port);
 
-var server = app.listen(app.get('port'), function() {
-  debug('Pegasus server listening on port ' + server.address().port);
-});
+if(port == 80) {
+  var message = " in production mode."
+}
+
+var io = require('socket.io').listen(app.listen(port));
+console.log('Pegasus server listening on port ' + app.get("port") + message);
 
 io.sockets.on('connection', function (socket) {
     socket.emit('message', { message: 'welcome to the chat' });
