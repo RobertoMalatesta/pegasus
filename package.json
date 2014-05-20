@@ -3,9 +3,6 @@
   "description": "Real time geopoltiical simulator",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "forever start ./bin/www NODE_ENV=production"
-  },
   "dependencies": {
     "express": "~4.2.0",
     "static-favicon": "~1.0.0",
